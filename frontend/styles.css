@@ -87,6 +87,15 @@ form button {
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    
+    
+}
+
+form button {
+    cursor: pointer;
+    background-color: #3e8e41;
+    color: #f4f4f4 ;
+    
 }
 
 textarea{

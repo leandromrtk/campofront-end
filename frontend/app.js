@@ -4,7 +4,7 @@ document.getElementById('presenca-form').addEventListener('submit', async functi
     const nameAluno = document.getElementById('nameAluno').value;
     const resumoAula = document.getElementById('resumoAula').value;
     const photoInput = document.getElementById('fotoAula');
-    const descDescricao = document.getElementById('descricao').value;
+    const descDescricao = document.querySelector('#descricao').value;
     const fotoAula = await convertImageToBase64(photoInput.files[0]);
 
     navigator.geolocation.getCurrentPosition(async (position) => {
@@ -64,6 +64,29 @@ async function fetchPresencas() {
     } catch (error) {
         console.error('Erro ao carregar presenças:', error);
     }
+
+    form.addEventListener('submit', (event)=>{
+        event.preventDefault();
+
+        const formData = new FormData(document.getElementById('presenca-form'));
+        const data = Object.fromEntries(formData);
+
+        // verifica se o campo está vazio
+        if (nameAluno.value === ""){
+            alert("Por favor preencha o campo");
+            return;
+        }
+
+        if (resumoAula.value === ""){
+            alert("Preencha o campo");
+            return;
+        }
+
+        // se os campos estiverem todos preenchidos o formulario sera enviado
+        form.submit();
+    })
+
+
 }
 
 fetchPresencas();
